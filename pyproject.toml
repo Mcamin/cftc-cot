@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cftc-cot"
+version = "0.1.0"
+description = "Downloader for official CFTC Commitments of Traders (COT) report archives and explanatory notes"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Ahmed Amine Mchayaa", email = "info@madev.de" }
+]
+keywords = [
+  "cftc",
+  "cot",
+  "commitments-of-traders",
+  "futures",
+  "market-data",
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+
+dependencies = [
+  "pandas>=1.5",
+  "requests>=2.25",
+  "beautifulsoup4>=4.9",
+]
+
+[project.urls]
+Homepage = "https://github.com/Mcamin/cftc-cot"
+Repository = "https://github.com/Mcamin/cftc-cot"
+Documentation = "https://github.com/Mcamin/cftc-cot#readme"
