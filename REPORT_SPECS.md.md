@@ -1,13 +1,3 @@
-Perfect idea. This is exactly the kind of file that saves future-you (and users) a lot of pain.
-
-Below is a **drop-in `REPORT_SPECS.md`** that matches your code **line-by-line**, explains *why* the mappings exist, and documents CFTC quirks without opinion or speculation.
-
-You can paste this directly into `REPORT_SPECS.md`.
-
----
-
-# REPORT_SPECS.md
-
 ### CFTC COT Report Filename & Archive Mapping
 
 This document explains how **CFTC Commitments of Traders (COT)** report types map to their corresponding **historical ZIP archive filenames** and why these mappings are required.
