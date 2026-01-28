@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cftc-cot"
-version = "0.1.1"
+version = "0.1.2"
 description = "Downloader for official CFTC Commitments of Traders (COT) report archives and explanatory notes"
 readme = "README.md"
 requires-python = ">=3.9"
