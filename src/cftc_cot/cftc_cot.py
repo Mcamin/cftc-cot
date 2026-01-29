@@ -12,6 +12,7 @@ import io
 import re
 import zipfile
 from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path
 from typing import Iterable, Optional, Union
 
@@ -150,11 +151,18 @@ def cot_download_year(
     zip_name = f"{spec.year_zip_prefix}{year}.zip"
     url = f"{CFTC_DEA_HISTORY_BASE}{zip_name}"
 
-    zip_bytes = _http_get_bytes(url, timeout=timeout)
-
     out_dir = _ensure_dir(path)
-    if store_zip:
-        _save_zip(zip_bytes, out_dir / zip_name)
+    out_path = out_dir / zip_name
+
+    current_year = datetime.now().year
+    is_current_year = (year == current_year)
+
+    if out_path.exists() and not is_current_year:
+        zip_bytes = out_path.read_bytes()
+    else:
+        zip_bytes = _http_get_bytes(url, timeout=timeout)
+        if store_zip:
+            _save_zip(zip_bytes, out_path)
 
     return _read_cot_file_from_zip(zip_bytes)
 
@@ -179,11 +187,16 @@ def cot_download_bundle(
         raise ValueError(f"No bundle_zip_filename configured for report type '{cot_report_type}'")
 
     url = f"{CFTC_DEA_HISTORY_BASE}{spec.bundle_zip_filename}"
-    zip_bytes = _http_get_bytes(url, timeout=timeout)
 
     out_dir = _ensure_dir(path)
-    if store_zip:
-        _save_zip(zip_bytes, out_dir / spec.bundle_zip_filename)
+    out_path = out_dir / spec.bundle_zip_filename
+
+    if out_path.exists():
+        zip_bytes = out_path.read_bytes()
+    else:
+        zip_bytes = _http_get_bytes(url, timeout=timeout)
+        if store_zip:
+            _save_zip(zip_bytes, out_path)
 
     return _read_cot_file_from_zip(zip_bytes)
 
